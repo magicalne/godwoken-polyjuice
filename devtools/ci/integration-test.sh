@@ -12,7 +12,7 @@ if [ -d "$GODWOKEN_DIR" ]
 then
     echo "godwoken project already exists"
 else
-    git clone -b compatibility-breaking-changes https://github.com/nervosnetwork/godwoken.git $GODWOKEN_DIR
+    git clone -b refactor-sudt-with-registry-address https://github.com/jjyr/godwoken.git $GODWOKEN_DIR
 fi
 cd $GODWOKEN_DIR
 git checkout 5ab0b782f0eb2d835705bf52475eeb874b203ed0 # https://github.com/nervosnetwork/godwoken/commits/5ab0b78
