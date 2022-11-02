@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -44,6 +45,8 @@
 #define POLYJUICE_SYSTEM_PREFIX 0xFF
 #define POLYJUICE_CONTRACT_CODE 0x01
 #define POLYJUICE_DESTRUCTED 0x02
+/* Syscall for tracing */
+#define GW_SYS_TRACE 3504
 
 void polyjuice_build_system_key(uint32_t id, uint8_t polyjuice_field_type,
                                 uint8_t key[GW_KEY_BYTES]) {
@@ -58,6 +61,11 @@ void polyjuice_build_contract_code_key(uint32_t id, uint8_t key[GW_KEY_BYTES]) {
 }
 void polyjuice_build_destructed_key(uint32_t id, uint8_t key[GW_KEY_BYTES]) {
   polyjuice_build_system_key(id, POLYJUICE_DESTRUCTED, key);
+}
+
+// TODO: fixme later, considering to make sys_trace optional when compiling
+int sys_trace(uint32_t flag, uint64_t data_len, uint8_t *data) {
+  return syscall(GW_SYS_TRACE, flag, data_len, data, 0, 0, 0);
 }
 
 /* assume `account_id` already exists */
@@ -608,6 +616,10 @@ struct evmc_result call(struct evmc_host_context* context,
   debug_print_int("msg.kind", msg->kind);
   debug_print_data("call.sender", msg->sender.bytes, 20);
   debug_print_data("call.destination", msg->destination.bytes, 20);
+
+  // 
+  sys_trace(0, 20, (uint8_t*)msg->destination.bytes);
+
   int ret;
   struct evmc_result res;
   memset(&res, 0, sizeof(res));

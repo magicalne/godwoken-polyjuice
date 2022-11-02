@@ -9,13 +9,13 @@ name = "lib"
 path = "src/lib.rs"
 
 [dependencies]
-gw-types     = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-common    = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-db        = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-store     = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-config    = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-traits    = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
-gw-generator = { git = "https://github.com/godwokenrises/godwoken.git", branch = "develop" }
+gw-types     = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-common    = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-db        = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-store     = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-config    = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-traits    = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
+gw-generator = { git = "https://github.com/magicalne/godwoken.git", branch = "syscall_trace" }
 ckb-vm = { version = "=0.21.3", features = ["detect-asm"] }
 ckb-vm-definitions = "=0.21.3"
 
@@ -26,6 +26,9 @@ hex = "0.4.2"
 env_logger = "0.9"
 anyhow = "1.0"
 
+jsonrpsee-http-client = "0.15.1"
+jsonrpsee-core = "0.15.1"
+
 # ethabi = "^17.0.0"
 # rand = "0.7.3"
 # blake2b-rs = "0.2"
@@ -33,4 +36,5 @@ anyhow = "1.0"
 [dev-dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.21.2", features = ["full"] }
 

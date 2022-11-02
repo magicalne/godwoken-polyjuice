@@ -7,5 +7,8 @@ pub mod helper;
 #[allow(clippy::too_many_arguments)]
 pub(crate) mod test_cases;
 
+pub mod rpc;
+pub mod sand_box;
+
 pub use gw_store;
 pub use gw_types;

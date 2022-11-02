@@ -839,3 +839,8 @@ pub(crate) fn print_gas_used(operation: &str, logs: &Vec<LogItem>) {
     }
     println!("{}: {} gas used", operation, gas_used.unwrap());
 }
+
+pub fn string_to_eth_addr(eth_addr: &str) -> [u8; 20] {
+    let eth_addr = hex::decode(eth_addr).expect("parse eth addr");
+    eth_addr.try_into().expect("parse eth addr to array")
+}
